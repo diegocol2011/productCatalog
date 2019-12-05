@@ -1,2 +1,0 @@
-# productCatalog
-Catalog of products
