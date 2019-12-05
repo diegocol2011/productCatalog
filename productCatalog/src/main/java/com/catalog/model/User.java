@@ -15,6 +15,8 @@ public class User {
 	private String usuario;
 
 	private String contrasena;
+	
+	private String tipoUsuario;
 
 	public Integer getId() {
 		return id;
@@ -39,4 +41,14 @@ public class User {
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
 	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
+	
+	
 }

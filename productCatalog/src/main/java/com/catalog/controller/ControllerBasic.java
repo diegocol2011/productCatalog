@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.catalog.model.Category;
 import com.catalog.model.User;
 import com.catalog.repository.UserRepository;;
 
@@ -28,16 +28,15 @@ public class ControllerBasic {
 	
 	@PostMapping("/pag")
 	public ModelAndView paginaPrincipal(User user) {
-		if(user.getId()==null) {
-			user.setId(0);
-		}
-		
 		List<User> list = new ArrayList<>(); 
 		userRepository. findAll().iterator().forEachRemaining(list::add);
 		
 		for (User userBD : list) {
 			if((userBD.getUsuario().equals(user.getUsuario())) && (userBD.getContrasena().equals(user.getContrasena())) ){
-				return new ModelAndView("index").addObject("nameData",new User());
+				if(userBD.getTipoUsuario().equals("admin") ) {
+					return new ModelAndView("registrar").addObject("nameData",new Category());
+				}
+				return new ModelAndView("index");
 			}
 		}
 		
@@ -49,8 +48,12 @@ public class ControllerBasic {
 		return new ModelAndView("crearLogin").addObject("nameData",new User());
 	}
 	
-	@PostMapping(path = "/validarlogin")
+	@PostMapping(path = "/crearlogin")
 	public ModelAndView validarlogin(User user) {
+		if(user.getTipoUsuario()==null) {
+			user.setTipoUsuario("noAdmin");
+		}
+		
 		Iterator<User> it = userRepository. findAll().iterator();
 		while (it.hasNext()) {
 			if(it.next().getUsuario().equals(user.getUsuario()) ){

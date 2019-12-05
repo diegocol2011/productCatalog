@@ -27,8 +27,42 @@ public class Category {
 	private String name;
 	
 	@Column(name="Image")
-	private Blob image;
+	private String image;
 	
 	@OneToMany(targetEntity=Product.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="category")
 	private List<Product> listProducts;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public List<Product> getListProducts() {
+		return listProducts;
+	}
+
+	public void setListProducts(List<Product> listProducts) {
+		this.listProducts = listProducts;
+	}
+	
+	
 }
