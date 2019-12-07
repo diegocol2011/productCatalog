@@ -6,8 +6,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -18,7 +16,6 @@ import javax.persistence.Table;
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="Id")
 	private Integer id;
 	
@@ -34,8 +31,14 @@ public class Product {
 	@Column(name="Price")
 	private String price;
 	
-	@Column(name="Image")
-	private Blob image;
+	@Column(name="Image1")
+	private String image1;
+	
+	@Column(name="Image2")
+	private String image2;
+	
+	@Column(name="Image3")
+	private String image3;
 	
 	@ManyToOne(targetEntity=Category.class, fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Category category;
@@ -80,12 +83,28 @@ public class Product {
 		this.price = price;
 	}
 
-	public Blob getImage() {
-		return image;
+	public String getImage1() {
+		return image1;
 	}
 
-	public void setImage(Blob image) {
-		this.image = image;
+	public void setImage1(String image1) {
+		this.image1 = image1;
+	}
+
+	public String getImage2() {
+		return image2;
+	}
+
+	public void setImage2(String image2) {
+		this.image2 = image2;
+	}
+
+	public String getImage3() {
+		return image3;
+	}
+
+	public void setImage3(String image3) {
+		this.image3 = image3;
 	}
 
 	public Category getCategory() {

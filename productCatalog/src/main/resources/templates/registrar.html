@@ -2,11 +2,9 @@
 <html>
 <head>
 <!--<meta charset="ISO-8859-1"> -->
-<link th:href="@{/css/bootstrap.css}" rel="stylesheet"
-	href="../static/css/bootstrap.css"></link>
-<script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
-<script th:src="@{/js/jquery-3.4.1.js}"
-	src="../static/js/jquery-3.4.1.js"></script>
+<link th:href="@{/vendor/bootstrap/css/bootstrap.css}" rel="stylesheet"	href="../static/vendor/bootstrap/css/bootstrap.css"></link>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.js}" src="../static/vendor/bootstrap/js/bootstrap.js"></script>
+<script th:src="@{/js/jquery-3.4.1.js}"	src="../static/js/jquery-3.4.1.js"></script>
 
 <title>Insert title here</title>
 </head>
@@ -31,24 +29,79 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col -12 mt -5">
-				<h1>Create Category</h1>
+			<div class="col -4 mt -2">
+				<h1>Create Category-Products</h1>
 			</div>
-			<div class="col -12">
-				<form th:action="@{/home/addNewPost}" method="post" th:object="${nameData}">
+			<div class="col -4">
+				<form th:action="@{/home/createCategory}" method="post" th:object="${categorydata}">
 					<div class="form-row">
-						<div class="form-group col-md-6">
-							<label for="name">Name</label> 
-							<input th:field="*{name}" th:value="*{name}"  type="text"
-								class="form-control" id="name" placeholder="Name"/>
-						</div>
 						
 						<div class="form-group col-md-6">
+							<label for="idname">Name</label> 
+							<select id="idname" class="form-control" th:field="*{name}" th:value="*{name}"  >
+								<option value="PC">Category PC</option>
+								<option value="CAR">Category Car</option>
+							</select>
+						</div>
+
+						<div class="form-group col-md-12">
 							<label for="image">Image</label> 
-							<input th:field="*{image}" th:value="*{image}"  type="text"
-								class="form-control" id="image" placeholder="Image"/>
+							<input th:field="*{image}" th:value="*{image}"  type="file" 
+								class="form-control" id="image"/>
 						</div>
 						
+					</div>
+					<button type="submit" class="btn btn-primary">Agregar</button>
+				</form>
+			</div>
+			
+			<div class="col -4">
+				<form th:action="@{/home/createProduct}" method="post" th:object="${productdata}">
+					<div class="form-row">
+						
+						<div >
+							<label for="idname">Name</label> 
+							<select id="idname" class="form-control" th:field="*{name}" th:value="*{name}"  >
+								<option value="PC">Computers</option>
+								<option value="CAR">Cars</option>
+							</select>
+						</div>
+						
+						<div >
+							<label for="description">Description</label> 
+							<input th:field="*{description}" th:value="*{description}"  type="text" 
+								class="form-control" id="description"/>
+						</div>
+						
+						<div >
+							<label for="weight">Weight</label> 
+							<input th:field="*{weight}" th:value="*{weight}"  type="text" 
+								class="form-control" id="weight"/>
+						</div>
+						
+						<div >
+							<label for="price">Price</label> 
+							<input th:field="*{price}" th:value="*{price}"  type="text" 
+								class="form-control" id="price"/>
+						</div>
+
+						<div >
+							<label for="image1">Image</label> 
+							<input th:field="*{image1}" th:value="*{image1}"  type="file" 
+								class="form-control" id="image1"/>
+						</div>
+						
+						<div >
+							<label for="image2">Image</label> 
+							<input th:field="*{image2}" th:value="*{image2}"  type="file" 
+								class="form-control" id="image2"/>
+						</div>
+						
+						<div >
+							<label for="image3">Image</label> 
+							<input th:field="*{image3}" th:value="*{image3}"  type="file" 
+								class="form-control" id="image3"/>
+						</div>
 						
 					</div>
 					<button type="submit" class="btn btn-primary">Agregar</button>
