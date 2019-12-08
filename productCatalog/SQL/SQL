@@ -1,0 +1,2 @@
+USE CATALOGDB;
+INSERT INTO USER VALUES(1,'1','admin','a');
