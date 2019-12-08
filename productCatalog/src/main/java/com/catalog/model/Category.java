@@ -1,7 +1,5 @@
 package com.catalog.model;
 
-import java.io.File;
-import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,7 +25,7 @@ public class Category {
 	@Column(name="Image")
 	private String image;
 	
-	@OneToMany(targetEntity=Product.class,fetch=FetchType.LAZY,cascade=CascadeType.ALL,mappedBy="category")
+	@OneToMany(targetEntity=Product.class,fetch=FetchType.LAZY,cascade=CascadeType.MERGE,mappedBy="category")
 	private List<Product> listProducts;
 
 	public Integer getId() {

@@ -83,12 +83,16 @@ public class ControllerBasic {
 	public String createProduct(Product product, Model model) {
 		model.addAttribute("categorydata",new Category());
 		model.addAttribute("productdata",new Product());
-		 
+		Category category = new Category(); 
+		
+		
 		if(product.getName().equals("PC")) {
-			product.setId(1);
+			category.setId(1);
+			product.setCategory(category); 
 			
 		}else {
-			product.setId(2);
+			category.setId(2);
+			product.setCategory(category);
 		}
 		
 		product.setImage1("/images/"+product.getName()+"/"+product.getImage1());
@@ -98,9 +102,6 @@ public class ControllerBasic {
 		
 		return "registrar";
 	}
-	
-	
-	
 	
 	@GetMapping(path = "/newlogin")
 	public ModelAndView newlogin() {
@@ -131,86 +132,13 @@ public class ControllerBasic {
 		Optional<Category> category= categoryRepository.findById(id);
 		if (category.isPresent()) {
 			model.addAttribute("categorydata", category.get());
-			model.addAttribute("productdata", category.get().getListProducts());
-			//System.out.println(category.get().getListProducts().get(0).getImage1());
 			return "index2";
 		}
 		
 		return "index";
 		
 	}
-	
-	
-	
-	/*@Autowired
-	private PostComponent postComponent;
-	
-	@GetMapping(path = {"/"})
-	public String saludar(Model model) {
-		model.addAttribute("nameData", this.postComponent.getPosts());
-		return "index2";
-	}
-	
-	
-	
-	@GetMapping(path="/public")
-	public ModelAndView post() {
-		ModelAndView modelAndView = new ModelAndView(Paginas.HOME);
-		modelAndView.addObject("nameData", this.postComponent.getPosts());
-		return modelAndView;
-	}
-	
-	@GetMapping(path = { "/post" })
-	public ModelAndView getPostIndividualParam(
-			@RequestParam(defaultValue = "1", name = "id", required = false) int id) {
-		ModelAndView modelAndView = new ModelAndView(Paginas.POST);
 
-		List<Post> postFiltadoList = this.postComponent.getPosts().stream().filter(p -> {
-			return p.getId() == id;
-		}).collect(Collectors.toList());
-
-		modelAndView.addObject("nameData", postFiltadoList.get(0));
-		return modelAndView;
-	}
-	
-	@GetMapping(path = { "/post/{ruta}" })
-	public ModelAndView getPostIndividualPath(
-			@PathVariable(required = true, name = "ruta") int id) {
-		ModelAndView modelAndView = new ModelAndView(Paginas.POST);
-
-		List<Post> postFiltadoList = this.postComponent.getPosts().stream().filter(p -> {
-			return p.getId() == id;
-		}).collect(Collectors.toList());
-
-		modelAndView.addObject("nameData", postFiltadoList.get(0));
-		return modelAndView;
-
-	}
-	
-	//form.html-------------------
-	
-	@GetMapping(path = {"/postNew1"})
-	public String getForm(Model model) {
-		model.addAttribute("nameData", new Post());
-		return "form";
-	}
-	
-	@GetMapping ("/postNew2")
-	public ModelAndView getForm() {
-		return new ModelAndView("form").addObject("nameData",new Post());
-	}
-
-	//index.html-------------------
-	
-	@PostMapping("/addNewPost")
-	public String addNewPost(Post post, Model model) {
-		List<Post> posts = this.postComponent.getPosts();
-		posts.add(post);
-		model.addAttribute("nameData",posts);
-		return "index2";
-	}*/
-	
-	
 	
 
 }

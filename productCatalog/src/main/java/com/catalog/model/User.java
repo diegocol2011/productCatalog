@@ -1,21 +1,28 @@
 package com.catalog.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity 
+@Entity
+@Table(name="User")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="Id")
 	private Integer id;
 
+	@Column(name="Usuario")
 	private String usuario;
 
+	@Column(name="Contrasena")
 	private String contrasena;
 	
+	@Column(name="TipoUsuario")
 	private String tipoUsuario;
 
 	public Integer getId() {
